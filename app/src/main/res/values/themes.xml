@@ -1,0 +1,28 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Base.Theme.SmartWebView" parent="Theme.Material3.DayNight.NoActionBar">
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+    <item name="android:textColor">@color/textColorPrimary</item>
+
+    <item name="android:statusBarColor">@color/statusBarColor</item>
+    <item name="android:navigationBarColor">@android:color/transparent</item>
+
+    <item name="android:windowLightStatusBar">true</item>
+</style>
+
+    <style name="Theme.SmartWebView" parent="Base.Theme.SmartWebView" />
+
+    <style name="Theme.SmartWebView.Fullscreen" parent="Base.Theme.SmartWebView" />
+
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+    <item name="windowSplashScreenBackground">@color/colorPrimary</item>
+    <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+    <item name="postSplashScreenTheme">@style/Theme.SmartWebView</item>
+</style>
+
+    <style name="Theme.SmartWebView.AppBarOverlay" parent="ThemeOverlay.Material3.Dark.ActionBar" />
+    <style name="Theme.SmartWebView.PopupOverlay" parent="ThemeOverlay.Material3.Light" />
+
+</resources>
