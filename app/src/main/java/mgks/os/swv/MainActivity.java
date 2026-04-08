@@ -46,7 +46,6 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.webkit.ConsoleMessage;
 import android.webkit.CookieManager;
@@ -167,30 +166,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         applySystemBarTheme(getResources().getConfiguration());
 
-        // Handle splash screen
-        final SplashScreen splashScreen = androidx.core.splashscreen.SplashScreen.installSplashScreen(this);
-
-        // If extending splash is enabled, set up a listener
-        // Keep the splash screen on-screen if the extend feature is enabled
+        // Install Android splash API, but do not block app content draw.
+        // The in-app welcome_splash (splash.png) is responsible for visible splash while WebView loads.
+        SplashScreen.installSplashScreen(this);
         final View content = findViewById(android.R.id.content);
-        if (SWVContext.ASWP_EXTEND_SPLASH) {
-            content.getViewTreeObserver().addOnPreDrawListener(
-                new ViewTreeObserver.OnPreDrawListener() {
-                    @Override
-                    public boolean onPreDraw() {
-                        // Check if the page is loaded.
-                        if (isPageLoaded) {
-                            // The content is ready; remove the listener and draw the content.
-                            content.getViewTreeObserver().removeOnPreDrawListener(this);
-                            return true;
-                        } else {
-                            // The content is not ready; don't draw anything, keeping the splash screen visible.
-                            return false;
-                        }
-                    }
-                }
-            );
-        }
 
         permissionManager = new PermissionManager(this);
 
